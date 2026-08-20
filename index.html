@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Efimija Cuneva | Data Engineering, AI &amp; Software Development</title>
+<meta name="description" content="Computer Science student at FINKI Skopje building projects across data engineering, machine learning and backend development, including a Spark-to-SQL-Server traffic data warehouse and LLM fine-tuning tooling.">
+<meta name="author" content="Efimija Cuneva">
+<meta name="theme-color" content="#0a0c10">
+
+<!-- Open Graph: update the URL once the site is deployed. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Efimija Cuneva | Data Engineering, AI &amp; Software Development">
+<meta property="og:description" content="Computer Science student building practical systems across data engineering, machine learning and software development.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+
+<script>
+  /* Apply the saved theme before first paint so there is no flash of the
+     wrong palette. Falls back to the operating system preference. */
+  (function () {
+    /* Enables the scroll-reveal hidden state. Without JS the class is never
+       added, so all content stays visible. */
+    document.documentElement.classList.add('js');
+    try {
+      var saved = localStorage.getItem('ec-theme');
+      var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+    } catch (e) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
+      <span id="brand-name">Efimija Cuneva</span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary"></nav>
+
+    <div class="header-actions">
+      <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch theme"></button>
+      <button type="button" class="icon-btn nav-toggle" id="nav-toggle"
+              aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu"></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================================================ hero -- -->
+  <section class="hero" id="top">
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="shell hero__inner">
+      <div>
+        <p class="hero__status">
+          <span class="hero__dot" aria-hidden="true"></span>
+          <span id="hero-location">Skopje, North Macedonia</span>
+        </p>
+
+        <h1 class="hero__name" id="hero-name">Efimija Cuneva</h1>
+        <p class="hero__role" id="hero-role"></p>
+        <p class="hero__intro" id="hero-intro"></p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#projects">View projects</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+
+        <nav class="hero__links" id="hero-links" aria-label="Profiles and contact"></nav>
+      </div>
+
+      <!-- Filled in only when site.photo is configured; otherwise stays empty. -->
+      <div class="hero__portrait" id="hero-portrait"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================== about -- -->
+  <section class="section section--alt" id="about">
+    <div class="shell">
+      <div class="about-grid reveal">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Building systems end to end, from raw data to the application on top of it.</h2>
+
+          <div class="about-prose" style="margin-top: var(--sp-6)">
+            <p>
+              I am a Computer Science student at the <strong>Faculty of Computer Science and
+              Engineering (FINKI)</strong> in Skopje, working toward a 240 ECTS degree with an
+              expected graduation in <strong>May 2027</strong>.
+            </p>
+            <p>
+              Most of what I know I have learned by building things large enough to break. That has
+              pulled me across several areas that turn out to be one continuous problem: getting data
+              out of operational systems, processing it reliably, modelling it so it answers real
+              questions, training models on top of it, and wrapping the whole thing in an application
+              somebody can use.
+            </p>
+            <p>
+              My strongest interests are in <strong>data engineering</strong>, <strong>AI and machine
+              learning</strong>, and <strong>backend software engineering</strong>. I care most about
+              the parts that decide whether a system survives contact with reality: what happens to
+              bad records, whether a job can safely be rerun, whether history stays correct after the
+              source system changes, and whether the database enforces its own constraints.
+            </p>
+            <p>
+              I am currently contributing to the <strong>VEZILKA</strong> research project at FINKI,
+              working on LLM training tooling and fine-tuning experiments for Macedonian-language NLP.
+            </p>
+          </div>
+        </div>
+
+        <div class="facts">
+          <div class="fact">
+            <div class="fact__label">Studying</div>
+            <div class="fact__value">BSc Computer Science, FINKI Skopje (240 ECTS)</div>
+          </div>
+          <div class="fact">
+            <div class="fact__label">Graduating</div>
+            <div class="fact__value">May 2027 (expected)</div>
+          </div>
+          <div class="fact">
+            <div class="fact__label">Focus areas</div>
+            <div class="fact__value">Data Engineering · AI/ML · Backend Development</div>
+          </div>
+          <div class="fact">
+            <div class="fact__label">Currently</div>
+            <div class="fact__value">LLM development team member, VEZILKA project</div>
+          </div>
+          <div class="fact">
+            <div class="fact__label">Languages</div>
+            <div class="fact__value">Macedonian (native) · English (C1)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== skills -- -->
+  <section class="section" id="skills">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Skills</p>
+        <h2 class="section-title">Technologies I work with</h2>
+        <p class="section-lede">
+          Grouped by what they are for rather than rated on a scale. Each of these appears
+          in a project below, not just on a list.
+        </p>
+      </div>
+      <div class="skills-grid reveal" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================== projects -- -->
+  <section class="section section--alt" id="projects">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="section-title">Featured projects</h2>
+        <p class="section-lede">
+          Six projects spanning data engineering, machine learning, backend development and
+          parallel computing. Open any card for the architecture and the engineering detail.
+        </p>
+      </div>
+
+      <div class="filters reveal" id="project-filters" role="group" aria-label="Filter projects by category"></div>
+
+      <div class="project-grid" id="project-grid"></div>
+
+      <div class="reveal" style="margin-top: var(--sp-7)">
+        <h3 class="dialog__label">Also built</h3>
+        <ul class="mini-list" id="also-built"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== approach -- -->
+  <section class="section" id="approach">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">How I work</p>
+        <h2 class="section-title">Data → Processing → Modeling → Intelligence → Applications</h2>
+        <p class="section-lede">
+          My projects look like they cover several unrelated fields. They do not. They are
+          consecutive stages of the same pipeline, and I have deliberately worked on each one.
+        </p>
+      </div>
+      <div class="approach-list reveal" id="approach-list"></div>
+    </div>
+  </section>
+
+  <!-- ======================================================= education -- -->
+  <section class="section section--alt" id="education">
+    <div class="shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Background</p>
+        <h2 class="section-title">Education &amp; experience</h2>
+      </div>
+      <div class="timeline reveal" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================= contact -- -->
+  <section class="section" id="contact">
+    <div class="shell">
+      <div class="contact-panel reveal">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-prompt">Interested in working together?</h2>
+          <p id="contact-body"></p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" id="contact-cta" href="#">Send an email</a>
+          </div>
+        </div>
+        <div class="contact-links" id="contact-links"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <p>&copy; <span id="footer-year">2026</span> Efimija Cuneva</p>
+    <nav class="footer-links" id="footer-links" aria-label="Footer"></nav>
+  </div>
+</footer>
+
+<!-- Project details. Rendered on open; native <dialog> gives focus trapping,
+     Escape-to-close and inert background for free. -->
+<dialog class="dialog" id="project-dialog" aria-labelledby="project-dialog-title"></dialog>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

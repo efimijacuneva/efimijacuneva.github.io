@@ -1,0 +1,120 @@
+:root {
+  /* colours */
+  --bg:            #0a0c10;
+  --bg-alt:        #0e1117;
+  --surface:       #14181f;
+  --surface-2:     #1a1f28;
+  --surface-hover: #1e242e;
+  --border:        #232a35;
+  --border-strong: #333c4b;
+
+  --text:          #e7eaf0;
+  --text-muted:    #9aa4b4;
+  --text-faint:    #8791a2;
+
+  /* accent */
+  --accent:        #ef94b4;
+  --accent-strong: #f8bcd0;
+  --accent-dim:    rgba(239, 148, 180, 0.13);
+  --accent-line:   rgba(239, 148, 180, 0.34);
+  --on-accent:     #2c0d19;
+  /* soft wash behind hero + contact */
+  --accent-glow:   rgba(239, 148, 180, 0.10);
+
+  /* one colour per project category */
+  --cat-cyan:      #56cfe1;
+  --cat-violet:    #b3a4ff;
+  --cat-green:     #5fd39b;
+  --cat-amber:     #e6b455;
+
+  /* bronze/silver/gold for the warehouse diagram */
+  --tone-bronze:   #d08a5a;
+  --tone-silver:   #b6c2d1;
+  --tone-gold:     #e6c15a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.75);
+
+  /* type */
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --fs-xs:   0.75rem;
+  --fs-sm:   0.8125rem;
+  --fs-base: 0.9375rem;
+  --fs-md:   1rem;
+  --fs-lg:   clamp(1.0625rem, 0.4vw + 0.95rem, 1.1875rem);
+  --fs-xl:   clamp(1.25rem, 0.8vw + 1.05rem, 1.5rem);
+  --fs-2xl:  clamp(1.6rem, 1.6vw + 1.2rem, 2.15rem);
+  --fs-3xl:  clamp(2.1rem, 3vw + 1.3rem, 3.1rem);
+  --fs-hero: clamp(2.5rem, 6vw + 0.8rem, 4.75rem);
+
+  --lh-tight: 1.12;
+  --lh-snug: 1.35;
+  --lh-body: 1.68;
+
+  /* spacing */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+  --sp-9: 6rem;
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+
+  --maxw: 1180px;
+  --maxw-prose: 68ch;
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+
+  /* motion */
+  --ease: cubic-bezier(0.22, 0.68, 0.32, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 620ms;
+
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg:            #fcfcfd;
+  --bg-alt:        #f5f6f9;
+  --surface:       #ffffff;
+  --surface-2:     #f4f6f9;
+  --surface-hover: #eef1f6;
+  --border:        #e2e6ed;
+  --border-strong: #c8cfda;
+
+  --text:          #12161d;
+  --text-muted:    #55606f;
+  --text-faint:    #5d6673;
+
+  --accent:        #a83a63;
+  --accent-strong: #8c2f52;
+  --accent-dim:    rgba(168, 58, 99, 0.09);
+  --accent-line:   rgba(168, 58, 99, 0.28);
+  --on-accent:     #ffffff;
+  --accent-glow:   rgba(168, 58, 99, 0.07);
+
+  --cat-cyan:      #0d7285;
+  --cat-violet:    #6d55d4;
+  --cat-green:     #17855c;
+  --cat-amber:     #98661a;
+
+  --tone-bronze:   #a8592a;
+  --tone-silver:   #5c6675;
+  --tone-gold:     #8a6b17;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 8px 24px -10px rgba(16, 24, 40, 0.18);
+  --shadow-lg: 0 24px 56px -22px rgba(16, 24, 40, 0.26);
+
+  color-scheme: light;
+}
