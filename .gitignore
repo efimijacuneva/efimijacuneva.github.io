@@ -2,3 +2,7 @@
 .vscode/
 .DS_Store
 Thumbs.db
+
+# private notes
+NOTES.local.md
+*.local.md

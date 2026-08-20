@@ -313,7 +313,7 @@ export const projects = [
     ],
     flowCaption:
       'The benchmark stage is part of the project, not an afterthought. The goal was to measure scaling behaviour, not just to make it run in parallel.',
-    links: { github: null, demo: null, note: 'Repository link to be added.' },
+    links: { github: null, demo: null, note: null },
   },
 
   {
