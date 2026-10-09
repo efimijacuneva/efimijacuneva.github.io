@@ -321,7 +321,7 @@ export const projects = [
     categories: ['software'],
     description: [
       'A full-stack web application for collecting, organising and analysing recipes. Recipes can be entered by hand or imported from a URL: the backend extracts the title, ingredients, quantities, steps, timings, servings, image, cuisine, category and tags from pages that publish schema.org recipe data, and falls back to common HTML patterns when they do not. In the web app the extracted recipe is shown for review before it is saved.',
-      'The frontend is a React single-page app and the backend a Node.js / Express REST API over a normalised SQLite schema (recipes, steps, ingredients, per-recipe quantities and nutrition, tags, categories and saved recipes) with foreign keys enforced and cascading deletes. Missing columns are added on startup, so an existing database upgrades without a manual migration step.',
+      'The frontend is a React single-page app and the backend a Node.js / Express REST API over a relational SQLite schema (recipes, steps, ingredients, per-recipe quantities and nutrition, tags, categories and saved recipes) with foreign keys enforced and cascading deletes. Missing columns are added on startup, so an existing database upgrades without a manual migration step.',
       'Calories, protein, carbohydrates and fat are calculated per ingredient and per recipe from the USDA FoodData Central API, with Open Food Facts as a fallback that also contributes E-number additive and allergen information. Recipes can be searched by name, ingredient or cuisine, filtered by category, tag, prep time and macros, and marked as favourites.',
     ],
     tech: [
@@ -360,7 +360,7 @@ export const projects = [
       { label: 'Extraction', sub: 'schema.org JSON-LD · HTML fallback', tone: 'engine' },
       { label: 'Ingredient parser', sub: 'Units · densities → grams', tone: 'green' },
       { label: 'Nutrition lookup', sub: 'USDA → Open Food Facts', tone: 'green' },
-      { label: 'SQLite', sub: 'Normalised · FK-enforced', tone: 'sink' },
+      { label: 'SQLite', sub: 'Relational · FK-enforced', tone: 'sink' },
     ],
     flowCaption:
       'The web app and the browser extension import through the same backend endpoint. Recipes typed in by hand skip extraction and parsing, and their ingredients are looked up unless the macros were entered manually.',

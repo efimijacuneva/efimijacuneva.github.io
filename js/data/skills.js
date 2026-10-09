@@ -91,7 +91,7 @@ export const approachStages = [
     title: 'Applications',
     lede: 'Something a person can actually use',
     body:
-      'Backend and full-stack applications around those systems, containerised and deployable, with the database constraints and state transitions modelled explicitly rather than enforced by convention.',
+      'Backend and full-stack applications around those systems, from a containerised ordering platform with a path to Kubernetes to a recipe manager with its own browser extension, with database constraints and state transitions modelled explicitly rather than enforced by convention.',
     projectIds: ['food-ordering', 'recipe-system'],
   },
 ];
