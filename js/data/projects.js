@@ -66,7 +66,7 @@ export const projects = [
       {
         title: 'One command, end to end',
         body:
-          'A single PowerShell script starts the containers, deploys both databases, generates seeded days of source data, runs the Spark bronze-to-gold pipeline, loads the warehouse per date, asserts the data-quality gate and prints a production-style execution summary. Spark, Java and SQL Server all run in Docker.',
+          'A single PowerShell script starts the containers, deploys both databases, generates seven seeded days of source data, runs the Spark bronze-to-gold pipeline, loads the warehouse per date, asserts the data-quality gate and prints a production-style execution summary. Spark, Java and SQL Server all run in Docker.',
       },
     ],
     flow: [
@@ -147,43 +147,40 @@ export const projects = [
     id: 'disease-prediction',
     title: 'Disease Prediction AI',
     tagline:
-      'A multiclass symptom-to-condition classifier over 380+ classes, comparing five models and combining the strongest three into a soft-voting ensemble.',
+      'A multiclass symptom-to-condition classifier over 580+ classes, comparing five models and combining three of them into a weighted soft-voting ensemble.',
     categories: ['ai'],
     description: [
       'A machine learning project that predicts likely conditions from a set of reported symptoms, served through a small Flask application that returns the three highest-probability predictions.',
-      'The dataset holds roughly 247,000 records described by 377 binary symptom features across 381 condition classes. This is an extreme multiclass problem where class imbalance and rare labels dominate the difficulty. The preprocessing pipeline loads the data with int8 column types to keep memory manageable, coerces non-binary values, merges very rare classes into an "Other" label, and label-encodes targets.',
-      'Training uses a stratified 20,000-row subset so five model families can be compared under identical conditions, with a further merge of classes holding fewer than 15 examples before the stratified train/test split.',
+      'The dataset holds roughly 247,000 records described by 377 binary symptom features across 773 condition classes. This is an extreme multiclass problem where class imbalance and rare labels dominate the difficulty. The preprocessing pipeline loads the data with int8 column types to keep memory manageable, coerces non-binary values, merges very rare classes into an "Other" label, and label-encodes targets.',
+      'Training uses a stratified 120,000-row subset so five model families can be compared under identical conditions. A further merge of classes holding fewer than 15 examples leaves 583 classes before the stratified 80/20 train/test split.',
     ],
-    tech: [
-      'Python', 'scikit-learn', 'XGBoost', 'TensorFlow / Keras', 'pandas',
-      'NumPy', 'imbalanced-learn', 'joblib', 'Flask',
-    ],
+    tech: ['Python', 'scikit-learn', 'XGBoost', 'pandas', 'NumPy', 'joblib', 'Flask'],
     metrics: [
       { value: '~247k', label: 'records in the dataset' },
       { value: '377', label: 'binary symptom features' },
-      { value: '381', label: 'condition classes' },
-      { value: '83.7%', label: 'ensemble test accuracy' },
+      { value: '583', label: 'condition classes after merging' },
+      { value: '120k', label: 'rows in the stratified training subset' },
     ],
     highlights: [
       {
         title: 'Five models compared on identical splits',
         body:
-          'Naive Bayes (69.8%), Decision Tree (6.9%), Random Forest (81.5%), XGBoost (77.8%) and a scaled neural network (82.7%) were each evaluated on the same held-out test set, with 3-fold cross-validation used to check stability.',
+          'Naive Bayes, a decision tree, a random forest, XGBoost and a neural network (a scikit-learn MLP on standardised features) are trained on the same split and evaluated on the same held-out test set. The Naive Bayes, tree and forest models use balanced class weights, and 3-fold cross-validation on those three checks stability.',
       },
       {
         title: 'A failure that shaped the design',
         body:
-          'The single decision tree collapsed to 6.9% accuracy, a clear demonstration of how one greedy tree fragments across hundreds of near-degenerate classes. That result is why the final system is an ensemble rather than a single classifier, and it is kept in the comparison rather than quietly dropped.',
+          'The single decision tree collapses to single-digit accuracy, a clear demonstration of how one greedy tree fragments across hundreds of near-degenerate classes. That result is why the final system is an ensemble rather than a single classifier, and it is kept in the comparison rather than quietly dropped.',
       },
       {
         title: 'Weighted soft-voting ensemble',
         body:
-          'The three strongest models are combined in a soft-voting classifier weighted 0.4 / 0.4 / 0.2 toward the random forest and neural network. The ensemble reaches 83.7% test accuracy, ahead of every individual model.',
+          'The random forest, neural network and XGBoost models are combined in a soft-voting classifier weighted 0.3 / 0.5 / 0.2, leaning most heavily on the neural network. The ensemble is the model the Flask app uses for every prediction.',
       },
       {
         title: 'Handling the long tail of rare classes',
         body:
-          'Rare conditions are merged into an "Other" category at two stages, once on the full dataset and again after subsetting, with re-encoding in between, so stratified splitting stays valid and no class ends up with too few samples to split.',
+          'Rare conditions are merged into an "Other" category at two stages, first the single-example classes on the full dataset and then every class with fewer than 15 examples after subsetting, with labels re-encoded after each merge, so stratified splitting stays valid and no class ends up with too few samples to split.',
       },
       {
         title: 'Top-k rather than a single answer',
@@ -215,9 +212,9 @@ export const projects = [
       'A containerised Django ordering platform with a guest-to-user cart merge, order history that survives catalogue changes, and a CI/CD path to Kubernetes.',
     categories: ['software'],
     description: [
-      'A full restaurant ordering system covering both the customer experience and the staff-facing admin panel. Customers browse a filterable menu, build a cart, check out with delivery details and follow a six-step order status timeline; staff manage products, categories, orders and customer accounts from a separate dashboard.',
+      'A full restaurant ordering system covering both the customer experience and the staff-facing admin panel. Customers browse a filterable menu, build a cart, check out with delivery details and follow a five-stage order status timeline; staff manage products, categories, orders and customer accounts from a separate dashboard.',
       'The application is server-rendered with Django and Bootstrap rather than a separate JavaScript front end, and runs behind Nginx with Gunicorn against PostgreSQL. The whole stack is containerised with a multi-stage Docker build and described declaratively for Kubernetes.',
-      'A GitHub Actions pipeline builds and publishes images to Docker Hub, and the Kubernetes manifests cover deployments, services, ingress, config maps, secrets, persistent volumes and a PostgreSQL StatefulSet.',
+      'A GitHub Actions pipeline runs the Django test suite against a PostgreSQL service container, validates the Compose and Kubernetes files, builds and publishes the backend and frontend images to Docker Hub, and, once a cluster is configured, applies the Kubernetes manifests with kubectl. The manifests cover a namespace, deployments, services, ingress, a config map, secrets, persistent volumes and a PostgreSQL StatefulSet.',
     ],
     tech: [
       'Django 4.2', 'Python', 'PostgreSQL 15', 'Gunicorn', 'Nginx', 'Bootstrap 5',
@@ -247,7 +244,7 @@ export const projects = [
       {
         title: 'Deployment described as code',
         body:
-          'Separate compose files for development, override and production, a multi-stage image build, and a full set of Kubernetes manifests including a StatefulSet with a persistent volume claim for PostgreSQL.',
+          'A base Compose file with separate development and production overrides, a multi-stage image build, and a full set of Kubernetes manifests including a StatefulSet with a persistent volume claim for PostgreSQL.',
       },
     ],
     flow: [
@@ -257,7 +254,7 @@ export const projects = [
       { label: 'PostgreSQL', sub: 'StatefulSet + PVC', tone: 'sink' },
     ],
     flowCaption:
-      'Runtime request path. Separately, GitHub Actions builds the image, publishes it to Docker Hub, and the Kubernetes manifests roll it out.',
+      'Runtime request path. Separately, GitHub Actions tests the code, publishes the images to Docker Hub and applies the Kubernetes manifests to roll them out.',
     links: {
       github: 'https://github.com/efimijacuneva/FoodOrdering',
       demo: null,
@@ -318,34 +315,55 @@ export const projects = [
 
   {
     id: 'recipe-system',
-    title: 'Recipe System',
+    title: 'Recipe Management System',
     tagline:
-      'A Django application for recipe management and ingredient-based search, and the project where I learned to model user relationships properly.',
+      'A full-stack recipe manager that imports recipes from a URL, calculates nutrition per ingredient from USDA and Open Food Facts data, and comes with a one-click browser extension.',
     categories: ['software'],
     description: [
-      'A Django web application for storing recipes and searching them by the ingredients a user already has. A recipe holds its name, description, ingredient list, preparation instructions and time, and the search view matches a comma-separated ingredient input against stored recipes.',
-      'This is an earlier and deliberately smaller project than the others here. Its value was learning Django fundamentals properly: the model layer and migrations, forms and ModelForms, URL routing with named routes, separation of concerns between views, and template inheritance from a shared base layout with a reusable navigation partial.',
-      'It is also where I hit a real referential-integrity problem: user-owned data had been associated through a hardcoded user id rather than a genuine foreign key to the authenticated user. That works exactly until there is more than one user. Fixing it meant modelling the relationship as a proper foreign key and reading the user from the request instead of assuming one. That lesson pushed me toward taking database constraints seriously in later projects.',
+      'A full-stack web application for collecting, organising and analysing recipes. Recipes can be entered by hand or imported from a URL: the backend extracts the title, ingredients, quantities, steps, timings, servings, image, cuisine, category and tags from pages that publish schema.org recipe data, and falls back to common HTML patterns when they do not. In the web app the extracted recipe is shown for review before it is saved.',
+      'The frontend is a React single-page app and the backend a Node.js / Express REST API over a normalised SQLite schema (recipes, steps, ingredients, per-recipe quantities and nutrition, tags, categories and saved recipes) with foreign keys enforced and cascading deletes. Missing columns are added on startup, so an existing database upgrades without a manual migration step.',
+      'Calories, protein, carbohydrates and fat are calculated per ingredient and per recipe from the USDA FoodData Central API, with Open Food Facts as a fallback that also contributes E-number additive and allergen information. Recipes can be searched by name, ingredient or cuisine, filtered by category, tag, prep time and macros, and marked as favourites.',
     ],
-    tech: ['Python', 'Django 5.1', 'SQLite', 'Django ORM', 'Django Forms', 'HTML/CSS'],
+    tech: [
+      'JavaScript', 'React', 'Node.js', 'Express', 'SQLite', 'Cheerio', 'Axios',
+      'USDA FoodData Central', 'Open Food Facts', 'Manifest V3', 'node:test', 'GitHub Actions',
+    ],
     highlights: [
       {
-        title: 'Ingredient-based search',
+        title: 'Turning ingredient lines into grams',
         body:
-          'The search view normalises and splits a free-text ingredient list and returns recipes matching any supplied ingredient, driven through a Django form with server-side validation.',
+          'The ingredient parser handles unicode fractions, weight and volume units and typical per-piece weights. Volume measures of dry goods go through a density table (flour at about 0.5 g/ml rather than water’s 1 g/ml, which would double its calories), and a weight the recipe states itself, such as “(525 g)”, wins over any density guess.',
       },
       {
-        title: 'Template inheritance done properly',
+        title: 'No answer rather than a wrong one',
         body:
-          'A shared base template plus a navigation partial, with per-page templates extending it, rather than duplicating page chrome across every view.',
+          'Common staples resolve from reference values. Everything else goes to USDA, where candidate foods are scored on word overlap with penalties for extra and processed-form words, so “egg” matches a whole raw egg rather than egg substitute. Open Food Facts is the fallback, and when neither source has a usable match the ingredient is reported as unknown instead of guessed.',
       },
       {
-        title: 'Referential integrity as a lesson learned',
+        title: 'Category matching that does not misfire',
         body:
-          'Replacing a hardcoded user id with a real foreign key to the authenticated user is a small change that carries a large idea: the database should enforce relationships, not the view layer’s assumptions.',
+          'Free-text categories such as “Dinner, Lamb, Main Course” are folded into canonical categories through alias words, including local-language variants like torta and salata. Matching is whole-word, so “Romaine” never counts as “main”.',
+      },
+      {
+        title: 'A browser extension as a thin client',
+        body:
+          'The Manifest V3 “Recipe Saver” extension does no parsing of its own. A content script only detects schema.org Recipe markup to flag the page, and saving from the popup or the right-click menu sends the URL to the backend, so extraction and nutrition logic live in exactly one place.',
+      },
+      {
+        title: 'Tested without touching the network',
+        body:
+          'More than 140 node:test cases cover the parser, nutrition lookups, categories, tags and image handling. External API calls are mocked, so the suite is deterministic and runs in GitHub Actions on pushes and pull requests.',
       },
     ],
-    flow: null,
+    flow: [
+      { label: 'Recipe page', sub: 'Web app · browser extension', tone: 'source' },
+      { label: 'Extraction', sub: 'schema.org JSON-LD · HTML fallback', tone: 'engine' },
+      { label: 'Ingredient parser', sub: 'Units · densities → grams', tone: 'green' },
+      { label: 'Nutrition lookup', sub: 'USDA → Open Food Facts', tone: 'green' },
+      { label: 'SQLite', sub: 'Normalised · FK-enforced', tone: 'sink' },
+    ],
+    flowCaption:
+      'The web app and the browser extension import through the same backend endpoint. Recipes typed in by hand skip extraction and parsing, and their ingredients are looked up unless the macros were entered manually.',
     links: {
       github: 'https://github.com/efimijacuneva/Recipe_system',
       demo: null,
