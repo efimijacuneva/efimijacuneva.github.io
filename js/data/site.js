@@ -42,6 +42,18 @@ export const site = {
 export const timeline = [
   {
     kind: 'experience',
+    title: 'Research Intern, MANU',
+    org: 'Macedonian Academy of Sciences and Arts (MANU)',
+    period: 'Oct 2026 - Present',
+    place: 'Skopje, North Macedonia',
+    points: [
+      'Conducting research on mechanistic interpretability of large language models, focusing on reinforcement learning and mode collapse in risky-choice prediction.',
+      'Investigating internal model representations and the potential for causal interventions to identify and ablate directions associated with collapsed prediction behaviour.',
+      'Research topic: Mechanistic Origins of RL-Induced Mode Collapse in LLM Risky-Choice Prediction: Identifying and Causally Ablating the Collapse Direction.',
+    ],
+  },
+  {
+    kind: 'experience',
     title: 'LLM Development Team Member, VEZILKA Project',
     org: 'Faculty of Computer Science and Engineering (FINKI)',
     period: 'Feb 2026 - Present',

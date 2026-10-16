@@ -1,4 +1,4 @@
-// all six projects live here. cards, filters and the detail dialog are built
+// all seven projects live here. cards, filters and the detail dialog are built
 // from this, so adding a project is just adding an object below.
 // featured: true = full width card, flow: null = no diagram
 
@@ -140,6 +140,78 @@ export const projects = [
       demo: null,
       note:
         'Developed in an internal faculty GitLab repository, so there is no public link. Happy to discuss the work in detail.',
+    },
+  },
+
+  {
+    id: 'ai-data-analyst',
+    title: 'AI Data Analyst Platform',
+    tagline:
+      'Upload a CSV or Excel dataset, ask a question in plain English, and get an answer computed from the data: an LLM plans, DuckDB or scikit-learn computes, and the summary may only cite the computed numbers.',
+    categories: ['ai', 'software', 'data'],
+    period: 'Sep 2026 - Present',
+    description: [
+      'A full-stack platform for asking questions about your own data. Users upload a CSV or Excel file, ask a question in plain English and get an answer computed from the data: key numbers, a chart, a table, and the plan and SQL behind them. Predictive questions such as “Predict customer churn” train and evaluate scikit-learn models instead.',
+      'The core rule is that the LLM plans and code computes. A LangGraph workflow routes the question, has the model produce a typed AnalysisPlan or MLPlan, validates it with a bounded number of repairs, compiles it to parameterised SQL and runs it in a sandboxed, read-only DuckDB. No SQL, Python or shell command written by a model is ever executed. The model can be Anthropic or any OpenAI-compatible API, with an offline fake for tests.',
+      'Questions run as background jobs: FastAPI stores a queued job in PostgreSQL and returns at once, and Celery workers on Redis execute it with bounded retries, cancellation and automatic recovery. Files, Parquet copies and results live in S3-compatible storage, models are tracked in MLflow, workflows can be traced in Langfuse, and the React and TypeScript UI is served by nginx. The whole stack runs in Docker Compose, with CI on GitHub Actions.',
+    ],
+    tech: [
+      'Python', 'FastAPI', 'LangGraph', 'DuckDB', 'React', 'TypeScript', 'PostgreSQL',
+      'Celery', 'Redis', 'scikit-learn', 'MLflow', 'Langfuse', 'S3 / SeaweedFS',
+      'Docker Compose', 'GitHub Actions', 'pytest',
+    ],
+    metrics: [
+      { value: '1,748', label: 'backend tests' },
+      { value: '99%', label: 'branch coverage' },
+      { value: '43/43', label: 'offline evaluation cases passing' },
+      { value: '27/29', label: 'cases passed by a real model on Groq' },
+    ],
+    highlights: [
+      {
+        title: 'The LLM plans, code computes',
+        body:
+          'The model only ever returns closed, validated structures: a route decision, an AnalysisPlan, an MLPlan or a narrative. The compiler is the only SQL author, with identifiers taken from the dataset schema and values passed as bound parameters, and DuckDB runs with external access and extensions disabled, a query timeout, and memory and result limits.',
+      },
+      {
+        title: 'Summaries that may only cite computed numbers',
+        body:
+          'The written summary is checked against the computed facts. An unusable or ungrounded summary gets one regeneration with feedback, and if it still cannot be grounded a fact-only summary is shown instead. Causal wording is never accepted, and “correlation” only when one was actually computed.',
+      },
+      {
+        title: 'Machine learning with honest metrics',
+        body:
+          'Predictive questions become a validated MLPlan. Allowlisted scikit-learn pipelines are trained in an isolated, time- and memory-limited process on a seeded 70/15/15 split, with preprocessing fitted on the training split only, compared against a baseline, selected on validation and evaluated once on the test set. Models are tracked in MLflow and stored pickle-free with skops, verified by SHA-256 before use.',
+      },
+      {
+        title: 'Background jobs that cannot get stuck',
+        body:
+          'Jobs are durable rows with an explicit state machine enforced by conditional updates and a database trigger. Messages carry only the job id, a job can be claimed only once so duplicate deliveries are harmless, cancellation is cooperative, and reconciliation fails jobs whose worker died, so no job stays queued or running forever.',
+      },
+      {
+        title: 'Evaluated against a real model, not only a fake',
+        body:
+          'The test suite is offline and deterministic, and an evaluation runs 43 questions through the real workflow, scoring the computed answer, the plan and the summary against independently computed ground truth. The same evaluation, paced to a free tier’s token limits and resumable across days, ran against gpt-oss-120b on Groq: from 69% of scored cases in the first full run to 27 of 29 (93%) in the final one, with tokens down from 320,435 to 188,094. Each run surfaced a real problem that was fixed and measured again.',
+      },
+      {
+        title: 'Security by default',
+        body:
+          'JWT authentication with Argon2id password hashing, every resource scoped to its owner so another user’s data is indistinguishable from a missing one, login throttling, per-user quotas, a daily limit on real LLM calls and a strict Content Security Policy on the UI. Only the worker receives the LLM key; the API never does.',
+      },
+    ],
+    flow: [
+      { label: 'React UI', sub: 'nginx · /api proxy', tone: 'source' },
+      { label: 'FastAPI', sub: 'Auth · validation · queued job', tone: 'engine' },
+      { label: 'Celery worker', sub: 'Redis queue · state in PostgreSQL', tone: 'engine' },
+      { label: 'LangGraph workflow', sub: 'Route · plan · validate', tone: 'violet' },
+      { label: 'DuckDB / scikit-learn', sub: 'Sandboxed compute · MLflow', tone: 'violet' },
+      { label: 'Grounded answer', sub: 'Chart · table · checked summary', tone: 'sink' },
+    ],
+    flowCaption:
+      'The API only queues the work and answers immediately; a worker runs the workflow. The language model is called for routing, planning and the summary, while every number comes from DuckDB or scikit-learn.',
+    links: {
+      github: null,
+      demo: null,
+      note: 'The repository is private at the moment, so there is no public link.',
     },
   },
 
@@ -319,6 +391,7 @@ export const projects = [
     tagline:
       'A full-stack recipe manager that imports recipes from a URL, calculates nutrition per ingredient from USDA and Open Food Facts data, and comes with a one-click browser extension.',
     categories: ['software'],
+    period: 'Team project',
     description: [
       'A full-stack web application for collecting, organising and analysing recipes. Recipes can be entered by hand or imported from a URL: the backend extracts the title, ingredients, quantities, steps, timings, servings, image, cuisine, category and tags from pages that publish schema.org recipe data, and falls back to common HTML patterns when they do not. In the web app the extracted recipe is shown for review before it is saved.',
       'The frontend is a React single-page app and the backend a Node.js / Express REST API over a relational SQLite schema (recipes, steps, ingredients, per-recipe quantities and nutrition, tags, categories and saved recipes) with foreign keys enforced and cascading deletes. Missing columns are added on startup, so an existing database upgrades without a manual migration step.',

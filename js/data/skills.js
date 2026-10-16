@@ -18,7 +18,7 @@ export const skillGroups = [
     title: 'Programming & Databases',
     icon: 'code',
     blurb: 'Languages I write day to day, and the stores I put data in.',
-    skills: ['Python', 'Java', 'C#', 'C/C++', 'SQL', 'PostgreSQL', 'SQLite', 'Entity Framework'],
+    skills: ['Python', 'Java', 'C#', 'C/C++', 'SQL', 'PostgreSQL', 'SQLite', 'Entity Framework', 'DuckDB'],
   },
   {
     id: 'ai',
@@ -37,7 +37,7 @@ export const skillGroups = [
     blurb: 'Building the applications that sit on top of the data.',
     skills: [
       'Django', 'ASP.NET MVC', 'Spring Boot', 'REST APIs', 'React', 'Node.js',
-      'MVC Architecture', 'HTML / CSS / JavaScript',
+      'MVC Architecture', 'HTML / CSS / JavaScript', 'FastAPI', 'Express',
     ],
   },
   {
@@ -47,7 +47,7 @@ export const skillGroups = [
     blurb: 'Getting work to run reliably somewhere other than my laptop.',
     skills: [
       'Docker', 'Docker Compose', 'Kubernetes', 'GitHub Actions', 'Jenkins',
-      'CI/CD', 'Git', 'PowerShell', 'pytest',
+      'CI/CD', 'Git', 'PowerShell', 'pytest', 'Automated Testing', 'Claude Code',
     ],
   },
 ];
