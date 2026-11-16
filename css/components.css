@@ -208,6 +208,7 @@
 .hero__links {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: var(--sp-5);
   margin-top: var(--sp-6);
   padding-top: var(--sp-5);
@@ -224,6 +225,21 @@
   transition: color var(--dur-fast) var(--ease);
 }
 .hero__links a:hover { color: var(--accent); }
+.hero__profiles { display: flex; flex-wrap: wrap; gap: var(--sp-5); }
+.hero__location {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  max-width: 100%;
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+@media (max-width: 600px) {
+  .hero__location { margin-inline-start: 0; }
+}
 
 /* about */
 .about-grid {

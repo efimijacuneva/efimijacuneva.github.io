@@ -67,11 +67,6 @@
     <div class="hero__grid" aria-hidden="true"></div>
     <div class="shell hero__inner">
       <div>
-        <p class="hero__status">
-          <svg class="hero__location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          <span id="hero-location">Based in Skopje, North Macedonia</span>
-        </p>
-
         <h1 class="hero__name" id="hero-name">Efimija Cuneva</h1>
         <p class="hero__role" id="hero-role">Computer Science Student <strong>/</strong> Data Engineering · AI/ML · Backend Development</p>
         <p class="hero__intro" id="hero-intro">I build Python backends, data pipelines, and LLM tooling. I study Computer Science at FINKI, contribute to VEZILKA, and research LLM interpretability as an intern at MANU.</p>
@@ -81,7 +76,13 @@
           <a class="btn btn--ghost" href="#contact">Get in touch</a>
         </div>
 
-        <nav class="hero__links" id="hero-links" aria-label="Profiles and contact"></nav>
+        <div class="hero__links">
+          <nav class="hero__profiles" id="hero-links" aria-label="Profiles and contact"></nav>
+          <p class="hero__location">
+            <svg class="hero__location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <span id="hero-location">Based in Skopje, North Macedonia</span>
+          </p>
+        </div>
       </div>
 
       <!-- Filled in only when site.photo is configured; otherwise stays empty. -->
