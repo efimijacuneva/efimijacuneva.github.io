@@ -28,13 +28,11 @@
   /* Apply the saved theme before first paint so there is no flash of the
      wrong palette. Falls back to the operating system preference. */
   (function () {
-    /* Enables the scroll-reveal hidden state. Without JS the class is never
-       added, so all content stays visible. */
-    document.documentElement.classList.add('js');
     try {
       var saved = localStorage.getItem('ec-theme');
       var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      document.documentElement.dataset.theme = saved || (prefersLight ? 'light' : 'dark');
+      document.documentElement.dataset.theme = saved === 'light' || saved === 'dark'
+        ? saved : (prefersLight ? 'light' : 'dark');
     } catch (e) {
       document.documentElement.dataset.theme = 'dark';
     }
@@ -62,7 +60,7 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
   <!-- ============================================================ hero -- -->
   <section class="hero" id="top">
@@ -70,13 +68,13 @@
     <div class="shell hero__inner">
       <div>
         <p class="hero__status">
-          <span class="hero__dot" aria-hidden="true"></span>
-          <span id="hero-location">Skopje, North Macedonia</span>
+          <svg class="hero__location-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span id="hero-location">Based in Skopje, North Macedonia</span>
         </p>
 
         <h1 class="hero__name" id="hero-name">Efimija Cuneva</h1>
-        <p class="hero__role" id="hero-role"></p>
-        <p class="hero__intro" id="hero-intro"></p>
+        <p class="hero__role" id="hero-role">Computer Science Student <strong>/</strong> Data Engineering · AI/ML · Backend Development</p>
+        <p class="hero__intro" id="hero-intro">I build Python backends, data pipelines, and LLM tooling. I study Computer Science at FINKI, contribute to VEZILKA, and research LLM interpretability as an intern at MANU.</p>
 
         <div class="hero__actions">
           <a class="btn btn--primary" href="#projects">View projects</a>
@@ -106,18 +104,13 @@
               expected graduation in <strong>May 2027</strong>.
             </p>
             <p>
-              Most of what I know I have learned by building things large enough to break. That has
-              pulled me across several areas that turn out to be one continuous problem: getting data
-              out of operational systems, processing it reliably, modelling it so it answers real
-              questions, training models on top of it, and wrapping the whole thing in an application
-              somebody can use.
+              I learn by building systems end to end: moving data from operational sources into
+              reliable pipelines, analytical models, and applications people can use.
             </p>
             <p>
               My strongest interests are in <strong>data engineering</strong>, <strong>AI and machine
               learning</strong>, and <strong>backend software engineering</strong>. I care most about
-              the parts that decide whether a system survives contact with reality: what happens to
-              bad records, whether a job can safely be rerun, whether history stays correct after the
-              source system changes, and whether the database enforces its own constraints.
+              validation, repeatable jobs, and data models that preserve history as source systems change.
             </p>
             <p>
               I am currently contributing to the <strong>VEZILKA</strong> research project at FINKI,
@@ -126,9 +119,9 @@
             <p>
               Since October 2026 I have also been a research intern at the <strong>Macedonian Academy
               of Sciences and Arts (MANU)</strong>, studying the mechanistic interpretability of large
-              language models: how reinforcement learning leads to mode collapse in risky-choice
-              prediction, and whether the internal direction behind it can be identified and causally
-              ablated.
+              language models. My research investigates reinforcement learning and mode collapse in
+              risky-choice prediction, including whether an associated internal direction can be
+              identified and causally ablated.
             </p>
           </div>
         </div>
@@ -170,8 +163,7 @@
         <p class="eyebrow">Skills</p>
         <h2 class="section-title">Technologies I work with</h2>
         <p class="section-lede">
-          Grouped by what they are for rather than rated on a scale. Each of these appears
-          in a project below, not just on a list.
+          Tools I use to build backend applications, process data, and train and evaluate models.
         </p>
       </div>
       <div class="skills-grid reveal" id="skills-grid"></div>
@@ -185,8 +177,8 @@
         <p class="eyebrow">Selected work</p>
         <h2 class="section-title">Featured projects</h2>
         <p class="section-lede">
-          Seven projects spanning data engineering, machine learning, backend development and
-          parallel computing. Open any card for the architecture and the engineering detail.
+          Seven projects across data engineering, AI/ML, and software development.
+          Open a card for the architecture, technical decisions, and results.
         </p>
       </div>
 
@@ -208,8 +200,8 @@
         <p class="eyebrow">How I work</p>
         <h2 class="section-title">Data → Processing → Modeling → Intelligence → Applications</h2>
         <p class="section-lede">
-          My projects look like they cover several unrelated fields. They do not. They are
-          consecutive stages of the same pipeline, and I have deliberately worked on each one.
+          I work across the pipeline, from preparing data and designing reliable processing
+          to building models and the applications that use them.
         </p>
       </div>
       <div class="approach-list reveal" id="approach-list"></div>
@@ -234,9 +226,9 @@
         <div>
           <p class="eyebrow">Contact</p>
           <h2 id="contact-prompt">Interested in working together?</h2>
-          <p id="contact-body"></p>
+          <p id="contact-body">I am looking for internship and junior opportunities in data engineering, backend development, and AI/ML. Get in touch by email.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" id="contact-cta" href="#">Send an email</a>
+            <a class="btn btn--primary" id="contact-cta" href="mailto:e.cuneva@yahoo.com">Send an email</a>
           </div>
         </div>
         <div class="contact-links" id="contact-links"></div>

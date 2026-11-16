@@ -14,11 +14,11 @@ export const projects = [
     id: 'traffic-dw',
     title: 'Smart City Traffic Analytics Data Warehouse',
     tagline:
-      'A production-style traffic warehouse: a Spark medallion pipeline feeding a Kimball star schema in SQL Server, gated by an automated data-quality framework.',
+      'A Spark-to-SQL Server warehouse built on synthetic traffic data, with Kimball star schemas and 41 catalogued quality checks.',
     categories: ['data'],
     featured: true,
     description: [
-      'A data engineering project that turns high-volume operational traffic data (sensor readings, camera events, traffic lights, weather stations and incident systems) into an analytical platform for historical analysis and BI reporting.',
+      'A data engineering project using synthetic sensor readings, camera events, traffic lights, weather observations and incidents for historical analysis and BI reporting. No real traffic data is used.',
       'The system runs two complementary processing paths into one conformed warehouse. A big-data path uses Apache Spark to cleanse, deduplicate, validate and aggregate raw sensor CSV and camera JSON into columnar Parquet. A relational path uses set-based T-SQL to load OLTP reference data (roads, sensors, incidents, fleet) with MERGE operations, slowly changing dimension handling and referential integrity.',
       'The warehouse itself follows the Kimball methodology: a bus matrix and explicit grain decisions lead to conformed dimensions and star schemas, separated into dim, fact, stg, etl and mart schemas.',
     ],
@@ -147,7 +147,7 @@ export const projects = [
     id: 'ai-data-analyst',
     title: 'AI Data Analyst Platform',
     tagline:
-      'Upload a CSV or Excel dataset, ask a question in plain English, and get an answer computed from the data: an LLM plans, DuckDB or scikit-learn computes, and the summary may only cite the computed numbers.',
+      'Ask questions about CSV or Excel data. Typed LLM plans become controlled SQL or ML jobs, with summaries checked against computed results.',
     categories: ['ai', 'software', 'data'],
     period: 'Sep 2026 - Present',
     description: [
@@ -183,14 +183,14 @@ export const projects = [
           'Predictive questions become a validated MLPlan. Allowlisted scikit-learn pipelines are trained in an isolated, time- and memory-limited process on a seeded 70/15/15 split, with preprocessing fitted on the training split only, compared against a baseline, selected on validation and evaluated once on the test set. Models are tracked in MLflow and stored pickle-free with skops, verified by SHA-256 before use.',
       },
       {
-        title: 'Background jobs that cannot get stuck',
+        title: 'Recovery for interrupted background jobs',
         body:
-          'Jobs are durable rows with an explicit state machine enforced by conditional updates and a database trigger. Messages carry only the job id, a job can be claimed only once so duplicate deliveries are harmless, cancellation is cooperative, and reconciliation fails jobs whose worker died, so no job stays queued or running forever.',
+          'Jobs are durable rows with conditional state updates and a database trigger. Queue messages carry a job id, claiming checks guard against duplicate execution, and cancellation is cooperative. Reconciliation marks interrupted jobs as failed; recovery depends on that process and the backing services remaining available.',
       },
       {
         title: 'Evaluated against a real model, not only a fake',
         body:
-          'The test suite is offline and deterministic, and an evaluation runs 43 questions through the real workflow, scoring the computed answer, the plan and the summary against independently computed ground truth. The same evaluation, paced to a free tier’s token limits and resumable across days, ran against gpt-oss-120b on Groq: from 69% of scored cases in the first full run to 27 of 29 (93%) in the final one, with tokens down from 320,435 to 188,094. Each run surfaced a real problem that was fixed and measured again.',
+          'Development records report 43/43 offline evaluation cases passing. A separate live-model run using gpt-oss-120b on Groq passed 27 of 29 cases. These are different evaluation sets, so the figures are not a like-for-like comparison. The live run is a small development evaluation and does not establish performance across arbitrary datasets or questions.',
       },
       {
         title: 'Security by default',
@@ -211,7 +211,7 @@ export const projects = [
     links: {
       github: null,
       demo: null,
-      note: 'The repository is private at the moment, so there is no public link.',
+      note: 'The repository is currently private. Test counts, coverage and evaluation figures are recorded development results; public run artifacts are not linked here.',
     },
   },
 

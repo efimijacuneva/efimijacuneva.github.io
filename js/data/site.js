@@ -3,13 +3,12 @@
 export const site = {
   name: 'Efimija Cuneva',
   role: 'Computer Science Student',
-  focus: 'Data Engineering · AI/ML · Software Development',
+  focus: 'Data Engineering · AI/ML · Backend Development',
   location: 'Skopje, North Macedonia',
 
   intro:
-    'I build practical systems across data engineering, machine learning and backend ' +
-    'development, from a Spark-to-SQL-Server warehouse with a real data-quality gate ' +
-    'to LLM fine-tuning tooling and containerised web applications.',
+    'I build Python backends, data pipelines, and LLM tooling. I study Computer Science ' +
+    'at FINKI, contribute to VEZILKA, and research LLM interpretability as an intern at MANU.',
 
   // set any of these to null to hide the link
   links: {
@@ -23,10 +22,10 @@ export const site = {
   // photo: { src: 'assets/me.jpg', alt: 'Efimija Cuneva' } - square, 520px+
   photo: null,
 
-  contactPrompt: 'Interested in working together or discussing an opportunity?',
+  contactPrompt: 'Interested in working together?',
   contactBody:
-    'I am currently looking for internship and junior opportunities in data engineering, ' +
-    'AI/ML and backend software engineering. The fastest way to reach me is by email.',
+    'I am looking for internship and junior opportunities in data engineering, backend ' +
+    'development, and AI/ML. Get in touch by email.',
 
   // ids have to match the section ids in index.html
   nav: [

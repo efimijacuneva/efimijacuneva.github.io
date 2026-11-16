@@ -132,4 +132,6 @@ export function initReveal() {
   );
 
   items.forEach((el) => observer.observe(el));
+  // Do not hide content until the observer is ready to reveal it.
+  document.documentElement.classList.add('js');
 }

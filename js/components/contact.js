@@ -107,7 +107,7 @@ export function initCopy() {
   set('contact-prompt', site.contactPrompt);
   set('contact-body', site.contactBody);
   set('brand-name', site.name);
-  set('hero-location', site.location);
+  set('hero-location', `Based in ${site.location}`);
 
   // photo is optional, hero goes two-column only if there is one
   const portrait = qs('#hero-portrait');

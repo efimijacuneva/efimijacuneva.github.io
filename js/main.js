@@ -8,17 +8,13 @@ import { initEducation } from './components/education.js';
 import { initContact, initCopy } from './components/contact.js';
 
 function boot() {
-  initCopy();
-  initTheme();
-  initNav();
-  initSkills();
-  initProjects();
-  initApproach();
-  initEducation();
-  initContact();
-
-  // last, so it sees everything that was just rendered
-  initReveal();
+  // One failed component must not prevent the rest of the page from loading.
+  for (const initialize of [initCopy, initTheme, initNav, initSkills, initProjects,
+    initApproach, initEducation, initContact, initReveal]) {
+    try { initialize(); } catch (error) {
+      console.error('Portfolio component failed:', initialize.name, error);
+    }
+  }
 
   // #project-<id> in the url opens that project straight away
   const match = window.location.hash.match(/^#project-([\w-]+)$/);
